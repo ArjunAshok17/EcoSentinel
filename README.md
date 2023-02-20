@@ -4,16 +4,16 @@
 
 Currently, there exists no standardized method of measuring ecological damage across the world. More importantly, there exists no simple way to broadcast important information in a form that is easily accessible and digestible.
 
-This automation can help in two key areas:
+Ecosentinel solves this in two two key areas:
 
 ### Measurement ###
-The measurement progress of any efforts, initiatives, etc. that are being implemented by governments in hopes of obtaining and broadcasting information.
+The measurement of the impact of any efforts, initiatives, etc. that are being implemented by governments in hopes of obtaining and broadcasting information.
 
-We can evaluate the effectiveness of certain methods. This can be built upon to eventually conduct predictive analytics to gauge effectiveness prior to even executing a plan. 
+We can evaluate the effectiveness of certain methods of combating climate change and deforestation. This can be built upon to eventually conduct predictive analytics to gauge effectiveness prior to even executing a plan. 
 
-Additionally, governments can get an idea of the impact they have on the progress of climate change. They can then use the data and predictions gathered to influence lawmaking and other legislative agendas/decisions.
+Additionally, governments can get an idea of the impact they have on the progress of climate change. They can then use the data and predictions gathered to influence lawmaking and other legislative agendas/decisions. The same concept could also apply to companies, though targeting company efforts becomes much more complicated and may be developed in future iterations.
 
-Arguably the most important impact is people can understand the weight of the problem easier (how much damage there is, but also how reliable some solutions can be). This could materialize as us potentially serving as an unbiased, third-party “watchdog” or tracker of ecological damage so everyone can understand who is contributing to what damage. 
+Arguably the most important impact is people can understand the weight of the problem easier (how much damage there is, but also how reliable some solutions can be). This could materialize as us potentially serving as an unbiased, third-party “watchdog” or tracker of ecological damage so everyone can understand who is contributing to what damage. Since the whole process (from algorithms to datasets we generate) is transparent to the public, there is a level of trust present in the launching of EcoSentinel.
 
 ### Analytics ###
 The conducting of post-generative analytics to predict the progress of climate change, especially with respect to specific areas and governments.
@@ -55,15 +55,17 @@ Maps a square unit of Earth's surface to a type of region, allowing us to genera
 If there is a Google alternative to what Bing has already done (with mapping all the trees in the world), we can also do that to avoid mapping ecosystems and instead track deforestation.
 
 ### Web App ###
-Allows users to access a rudimentary 3D model that is pre-rendered each day on a cloud server
+Allows users to access a rudimentary 3D model that is pre-rendered each day on a cloud server.
 
-Additionally, if there are specific regions to watch out for (such as during a wildfire, the amazon, etc.), we can more frequently update those as needed ⇒ will need additional processing to determine this
+Additionally, if there are specific regions to watch out for (such as during a wildfire, the amazon, etc.), we can more frequently update those as needed. Additional processing will be needed to determine this.
 
 ### Earth Visualization ####
-Given the augmented data that the Forest AI will produce, we should be able to generate a rough 3D model of either the trees on Earth or a color-gradient map that shows areas of high damage vs low damage in comparison to previous years.
+Given the augmented data that the Ecosystem AI will produce, we should be able to generate a rough 3D model of either the trees on Earth or a color-gradient map that shows areas of high damage vs low damage in comparison to previous years.
+
+This deliverable is the most important for broadcasting information to the public in a digestable way. Visuals must be made (and presented on the web app) in a way that is easily understood by the general public and highlights high-risk areas and low-effort governments.
 
 ### Post-Generation Analytics ###
-Given the data from the Forest AI, we should be able to calculate the risk of certain areas being impacted beyond repair
+Given the data from the Forest AI, we should be able to calculate the risk of certain areas being impacted beyond repair.
 
 + This risk factor should be another color-gradient shown in the 3D model
 - Risk factor should take in the following features:
@@ -72,7 +74,7 @@ Given the data from the Forest AI, we should be able to calculate the risk of ce
     - Recent trends in damage (in the last ~3 years)
     - Current deforestation percentage (can be retrieved from another dataset probably)
 
-Can add other analysis in the future that determines insights (near a city ⇒ that city is likely causing damage, near a farm ⇒ grazing, slash/burn might be the cause, etc.)
+Future iterations can add other analysis that determines insights (near a city means that city is likely causing damage, near a farm means grazin or slash/burn techiques might be the cause, etc.).
 
 ## Concerns ##
 The amount of processing needed to generate a model and identify billions of trees around the Earth may force us to narrow our outlook to just a few key regions on Earth (Amazon rainforest, national parks in the US, etc.)
