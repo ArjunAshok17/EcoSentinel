@@ -2,9 +2,11 @@
 
 ## Problem + Solution ##
 
-Currently, there exists no standardized method of measuring ecological damage across the world. More importantly, there exists no simple way to broadcast important information in a form that is easily accessible and digestible.
+Much like the Lorax, we are here to guard the trees.
 
-Ecosentinel solves this in two two key areas:
+Currently, there exists no standardized method of measuring ecological damage across the world. More importantly, there exists no simple way to broadcast important information in a form that is easily accessible and digestible. EcoSentinel serves as an independent, AI powered monitor that analyzes Google Earth data into an intermediary dataset (presented as a map of deforestation). EcoSentinel then conducts further time-series analysis on this dataset to calculate risk of ecological systems and then assign grades to countries based on their success in preventing ecological loss.
+
+Ecosentinel solves this in two two key areas: Measurement and Analytics.
 
 ### Measurement ###
 The measurement of the impact of any efforts, initiatives, etc. that are being implemented by governments in hopes of obtaining and broadcasting information.
