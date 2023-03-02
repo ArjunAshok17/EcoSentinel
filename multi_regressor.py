@@ -87,7 +87,7 @@ def regr_prediction(regr_looks, input):
 """
     Data import functions.
 """
-# full data import #
+# full data process #
 def data_import(dir, cols):
     # load datasets #
     data = read_data(dir, cols)
@@ -121,6 +121,10 @@ def read_data(dir, cols):
 
 # ensure data format #
 def format_data(data):
+    # # check dimensions #
+    # if np.atleast_2d(data).shape[0] != 1:
+    #     return data
+    
     # check transposing #
     if np.atleast_2d(data).shape[0] < np.atleast_2d(data).shape[1]:
         data = np.atleast_2d(data).T
@@ -131,25 +135,22 @@ def format_data(data):
 
 # normalize data #
 def normalize(data):
-    # split data #
-    input, expected_output = split_io(data)
-
     # normalize inputs #
     input = input / input.max(axis=0)
 
     # return split data #
-    return input, expected_output
+    return input
 
 
 # split data into input & output #
 def split_io(data):
     # dimensions #
-    num_entries, num_cols = data.shape
-    num_cols -= 1
+    num_elements, num_features = data.shape
+    num_features -= 1
 
     # split data #
-    input = data[ : , : num_cols]
-    expected_output = data[ :, num_cols]
+    input = np.atleast_2d(data)[ : , : num_features]
+    expected_output = np.atleast_2d(data)[ :, num_features]
 
     # return split #
     return input, expected_output
@@ -158,12 +159,12 @@ def split_io(data):
 # splits into training, test, and cross-validation sets #
 def split_data(data):
     # dimensions #
-    num_entries, num_cols = data.shape
+    num_elements, num_features = np.atleast_2d(data).shape
 
     # percent split #
-    train_entries = int(num_entries * .7)
-    test_entries = int(num_entries * .15)
-    cv_entries = num_entries - (train_entries + test_entries)
+    train_entries = int(num_elements * .7)
+    test_entries = int(num_elements * .15)
+    cv_entries = num_elements - (train_entries + test_entries)
 
     test_start = train_entries + 1
     cv_start = train_entries + test_entries + 1
@@ -172,10 +173,9 @@ def split_data(data):
     np.random.shuffle(data)
 
     # split #
-    train_data = data[ : test_start, : ]
-    test_data = data[test_start : cv_start, : ]
-    cv_data = data[cv_start : , : ]
+    train_data = np.atleast_2d(data)[ : test_start, : ]
+    test_data = np.atleast_2d(data)[test_start : cv_start, : ]
+    cv_data = np.atleast_2d(data)[cv_start : , : ]
 
     # return #
     return train_data, test_data, cv_data
-
