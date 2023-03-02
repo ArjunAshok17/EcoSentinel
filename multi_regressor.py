@@ -3,17 +3,65 @@
     to generate the most accurate linear outlook for a given time period.
     
     This works by taking multiple "regressive looks" at the same dataset for long- and short-term trends and then 
-    weighing the linear models in a balanced weigh to predict for a given future time period.
+    weighing the linear models using a skewed distribution to predict for a given future time period.
 """
 
 import numpy as np                  # cleanse data
 import pandas as pd                 # load dataframe
-from sklearn import linear_model    # linear regrssion
-from data_management import *       # data management
+import matplotlib.pyplot as plt     # plotting functions
+from sklearn import linear_model    # linear regression
 
 
 """
-    Regression calcualtion
+    Visualization functions
+"""
+# plot dataset & model #
+def plot_whole(regr_predictions, input, output, cols):
+    # variable handling #
+    num_elements, num_features = np.atleast_2d(input).shape
+    pred_type = cols[num_features]
+
+    # initialize plot #
+    fig, axs = plt.subplots((num_features + 1) // 2, 2)
+    fig.suptitle(f"{pred_type} Prediction")
+
+    # plot data points #
+    plt_num = 0
+    for ax in axs.flat:
+        # check subplot size #
+        if plt_num >= num_features:
+            break
+
+        # plot data #
+        # ax.scatter(input, output, color='black')
+        ax.scatter(np.atleast_2d(input)[ : , plt_num], np.atleast_2d(output)[ : , : ], color='black')
+        
+        # plot regressive looks #
+        plot_regressive_looks(ax, regr_preds=regr_predictions, input=input)
+
+        # labeling #
+        ax.set_title(f"{pred_type} correlation w/ {cols[plt_num]}")
+
+        # increment #
+        plt_num += 1
+    
+    # return plot #
+    return (fig, axs)
+
+
+# plots all regressive looks #
+def plot_regressive_looks(ax, regr_preds, input):
+    # variable handling #
+    num_elements, num_features = np.atleast_2d(input).shape
+
+    # draw each prediction #
+    for regr_pred in regr_preds:
+        for feature in range(num_features):
+            ax.plot(np.atleast_2d(input)[ : , feature], regr_pred, color='blue', linewidth=2, label='Linear')
+
+
+"""
+    Regression calculation
 """
 # returns optimized linear model #
 def optimize(input, exp_out):
@@ -25,6 +73,15 @@ def optimize(input, exp_out):
 
     # return model & parameters #
     return (regr_look, regr_look.coef_)
+
+
+# conducts predictions for all models #
+def regr_prediction(regr_looks, input):
+    # make prediction #
+    regr_preds = [regr_look.predict(input) for regr_look in regr_looks]
+
+    # return regressive predictions#
+    return regr_preds
 
 
 """
@@ -60,6 +117,16 @@ def read_data(dir, cols):
 
     # give back info #
     return data_arr
+
+
+# ensure data format #
+def format_data(data):
+    # check transposing #
+    if np.atleast_2d(data).shape[0] < np.atleast_2d(data).shape[1]:
+        data = np.atleast_2d(data).T
+
+    # default #
+    return data
 
 
 # normalize data #
@@ -111,3 +178,4 @@ def split_data(data):
 
     # return #
     return train_data, test_data, cv_data
+
