@@ -32,7 +32,7 @@ In terms of which of the UN’s goals are being targeted, we believe it will hel
 We use effectively same reasoning as goal 11, iffy whether or not it counts but we figure the end-goal of forwarding the economy sustainably allows us to count this.
     
 #### Goal 11: Sustainable Cities and Communities #### 
-Wee’re providing the insights necessary for governments to implement more sustainable building/expansion practices
+We’re providing the insights necessary for governments to implement more sustainable building/expansion practices
         
 We can provide predictive analytics to weigh the effects of certain expansion practices (what expanding into a certain natural ecosystem might do to affect that ecosystem). We can also Provide the data necessary to gauge which ecosystems are most at risk and therefore will require a ban in expansion into those spaces
 
@@ -42,7 +42,7 @@ We can act as a regulatory body by providing insights to companies on the impact
 By implementing a system in which certain companies & countries receive a grade based on how well they are taking care of their natural ecosystems and contributing to the world’s fight against climate change (both good and bad contributions will be weighted), we incentivize the public to get involved in helping their country be a better role model.
 
 #### Goal 13: Climate Action #### 
-This goal is very closely tied in with the whole project: we’re aiming to give people the information & insights necessary to take action themselves
+This goal is very closely tied in with the whole project: we’re aiming to give people the information & insights necessary to take action themselves.
 
 In other words, we’re giving everyone the resources to create positive change since the limits of AI constrain us from physical action (without robotics, of course).
 

@@ -33,7 +33,6 @@ def plot_whole(regr_predictions, input, output, cols):
             break
 
         # plot data #
-        # ax.scatter(input, output, color='black')
         ax.scatter(np.atleast_2d(input)[ : , plt_num], np.atleast_2d(output)[ : , : ], color='black')
         
         # plot regressive looks #
@@ -121,10 +120,6 @@ def read_data(dir, cols):
 
 # ensure data format #
 def format_data(data):
-    # # check dimensions #
-    # if np.atleast_2d(data).shape[0] != 1:
-    #     return data
-    
     # check transposing #
     if np.atleast_2d(data).shape[0] < np.atleast_2d(data).shape[1]:
         data = np.atleast_2d(data).T
