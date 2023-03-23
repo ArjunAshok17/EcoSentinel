@@ -13,7 +13,56 @@ from sklearn import linear_model    # linear regression
 
 
 """
-    Visualization functions
+    Complete regressive model.
+"""
+def main():
+    # set param #
+    dir = ""
+    time_frame_ratio = [1, .5, .25, .1, .05]
+    regr_looks = []
+    regr_preds = []
+
+    # import #
+    dataset = data_import(dir)
+    col_labels = dataset[0]
+
+    data = dataset[1]
+    exp_output = dataset[2]
+
+    test_data = dataset[3]
+    test_exp_output = dataset[4]
+
+    # time frames #
+    data[np.atleast_2d(data)[:, 0].argsort()]
+    time_frames = split_time_frame(data, time_frame_ratio)
+    
+    # train models #
+    for frame in time_frames:
+        # add trained model #
+        regr_looks += [optimize(np.atleast_2d(data)[ : frame, : ], exp_output)[0]]
+    
+    # predictions #
+    regr_preds = regr_prediction(regr_looks, test_data)
+
+    # visualize #
+    print("VISUALIZING")
+    fig, axs = plot_whole(regr_preds, test_data, test_exp_output, col_labels)
+    plt.show()
+
+
+# divide data into time frames #
+def split_time_frame(time_data, frame_ratio):
+    # range #
+    begin = np.min(time_data)
+    end = np.max(time_data)
+    range = end - begin
+
+    # divide #
+    return [ratio * range for ratio in frame_ratio]
+
+
+"""
+    Visualization functions.
 """
 # plot dataset & model #
 def plot_whole(regr_predictions, input, output, cols):
@@ -60,7 +109,7 @@ def plot_regressive_looks(ax, regr_preds, input):
 
 
 """
-    Regression calculation
+    Regression calculation.
 """
 # returns optimized linear model #
 def optimize(input, exp_out):
@@ -84,7 +133,7 @@ def regr_prediction(regr_looks, input):
 
 
 """
-    Data import functions.
+    Data import & engineering functions.
 """
 # full data process #
 def data_import(dir, cols):
