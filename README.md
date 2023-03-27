@@ -1,84 +1,48 @@
 # EcoSentinel #
+In this document is the operating instructions for running the EcoSentinel pipeline on your own hardware, unlocking the same insights we have worked hard to develop. We are making this project completely open-source in an effort to stay transparent about our methods of analysis, earning some trust from the public, legislative officials, and company executives around the world about the information we are providing.
 
-## Problem + Solution ##
+Below, we provide a high-level overview of the custom-built pipeline we have constructed, and then dive into the details of each step.
 
-Much like the Lorax, we are here to guard the trees.
+## Pipeline Overview ##
+The EcoSentinel pipeline begins with a continuous import of satellite imagery from Google Earth Engine. Using its API, we can deliver fresh landsat images for monitoring ecological damage.
 
-Currently, there exists no standardized method of measuring ecological damage across the world. More importantly, there exists no simple way to broadcast important information in a form that is easily accessible and digestible. EcoSentinel serves as an independent, AI powered monitor that analyzes Google Earth data into an intermediary dataset (presented as a map of deforestation). EcoSentinel then conducts further time-series analysis on this dataset to calculate risk of ecological systems and then assign grades to countries based on their success in preventing ecological loss.
+Because Google Earth Engine has its limitations with analyzing the data, we then move into Python for our Tensorflow model, analyzing segments of the Earth’s landmass for deforestation over time.
 
-Ecosentinel solves this in two two key areas: Measurement and Analytics.
+The data we gather on forest coverage is then fed into our time-series analysis, where we consider short and long terms trends in ecological damage to best predict how Earth’s ecological systems will grow or shrink in the future.
 
-### Measurement ###
-The measurement of the impact of any efforts, initiatives, etc. that are being implemented by governments in hopes of obtaining and broadcasting information.
+Those trends are then weighted to take calculate a few key metrics:
+* Risk, the risk of an ecosystem going beyond the point of recovery
+* Grades, an evaluation of countries (and eventually companies) on their effectiveness in reigning in ecological destruction
+* And in the future, a predictive system that can project the effectiveness of any legislation or other efforts based on past trends
 
-We can evaluate the effectiveness of certain methods of combating climate change and deforestation. This can be built upon to eventually conduct predictive analytics to gauge effectiveness prior to even executing a plan. 
+All of these findings will then be presented in digestible, yet informative, visualizations on our website.
 
-Additionally, governments can get an idea of the impact they have on the progress of climate change. They can then use the data and predictions gathered to influence lawmaking and other legislative agendas/decisions. The same concept could also apply to companies, though targeting company efforts becomes much more complicated and may be developed in future iterations.
+To read a graphic with the pipeline, check out the `EcoSentinel_Pipeline.docx` file.
 
-Arguably the most important impact is people can understand the weight of the problem easier (how much damage there is, but also how reliable some solutions can be). This could materialize as us potentially serving as an unbiased, third-party “watchdog” or tracker of ecological damage so everyone can understand who is contributing to what damage. Since the whole process (from algorithms to datasets we generate) is transparent to the public, there is a level of trust present in the launching of EcoSentinel.
+To read a more in-depth overview of EcoSentinel, including the problems we are targeting and how our implementation works, read the `PROJECTOVERVIEW.md` file. It contains our entire project outline that we used to construct the pipeline. Be wary of typos though, it was largely intended as documentation for developers of the project.
 
-### Analytics ###
-The conducting of post-generative analytics to predict the progress of climate change, especially with respect to specific areas and governments.
+## Earth Engine ##
+In the `ee_scripts.js` file, we have uploaded some of the scripts we used to calculate certain metrics, and just generally get accustomed to the interface in Earth Engine. These scripts ended up not being needed, as the bulk of the data import is done in Python, but it's a nice way to understand the data repository we are working with.
 
-We can keep a list of countries/regions to watch out for given the rate of damage as well as historical data (both information that we generate in our tracking, as well as information available prior to our tracker being implemented).
+## Tensorflow Model ##
+In the `ee_model.ipynb` files, we have included our whole tensorflow model training in an easy to understand and run notebook.
 
-Essentially, we track damage with computer vision on Google Earth data and then conduct analysis on the data we ourselves have generated.
+The `geo_model.py` file includes our first attempt at creating a framework to use, but it serves now as an experimentation file for testing out different weights, etc. Any users of EcoSentinel need not worry about this file, this is simply as a reference for the developers of EcoSentinel.
 
-## Issues Targeted ##
+## Multi-Regressive Analysis ##
+In the `multi_regressor.py` file, you can find the main algorithm driving our post-monitoring analysis. Here, we use the data generated by our TensorFlow model to conduct "self-fulfilling" predictions about the rate of deforestation. The results of this algorithm are what powers the risk and grading analysis.
 
-In terms of which of the UN’s goals are being targeted, we believe it will help with:
+In `risk_analysis.py`, we calculate risk using a custom weighted formula and predictions from the linear model generated in `multi_regressor.py`.
 
-#### Goal 9: Industry, Innovation and Infrastructure ####
-We use effectively same reasoning as goal 11, iffy whether or not it counts but we figure the end-goal of forwarding the economy sustainably allows us to count this.
-    
-#### Goal 11: Sustainable Cities and Communities #### 
-We’re providing the insights necessary for governments to implement more sustainable building/expansion practices
-        
-We can provide predictive analytics to weigh the effects of certain expansion practices (what expanding into a certain natural ecosystem might do to affect that ecosystem). We can also Provide the data necessary to gauge which ecosystems are most at risk and therefore will require a ban in expansion into those spaces
+In `grade_analysis.py`, we calculate grades using the risk we measure for a certain country and another custom weighted formula.
 
-#### Goal 12: Responsible Consumption and Production ####
-We can act as a regulatory body by providing insights to companies on the impacts of their materials sourcing on ecological systems.
+## Web App ##
+The code for our web app is also published alongside these files. Although we fully expect users to interact with the EcoSentinel pipeline through the user interface of the website, we provide these files as a method of transparency.
 
-By implementing a system in which certain companies & countries receive a grade based on how well they are taking care of their natural ecosystems and contributing to the world’s fight against climate change (both good and bad contributions will be weighted), we incentivize the public to get involved in helping their country be a better role model.
+# Conclusion #
+If all this sounds complicated, that's because it very much is. And our pipeline is far from over. We have designed EcoSentinel to expand from just identifying a problem to flat-out solving it in some respects (read more in our project overview).
 
-#### Goal 13: Climate Action #### 
-This goal is very closely tied in with the whole project: we’re aiming to give people the information & insights necessary to take action themselves.
+But to you, our user, there is no point in overcomplicating an entire process in an effort to provide transparency. So as a compromise, we provide our final file, `ecosentinel.ipynb`: a notebook that carries you step-by-step through the whole pipeline, allowing you to analyze one country, or a set of countries, at a time.
 
-In other words, we’re giving everyone the resources to create positive change since the limits of AI constrain us from physical action (without robotics, of course).
-
-#### Goal 15: Life on Land ####
-This goal is closely tied in with all the previous goals’ reasoning.
-
-## Deliverables ##
-
-### Ecosystem AI ###
-Maps a square unit of Earth's surface to a type of region, allowing us to generate a 3D model of the Earth’s ecological and human systems.
-
-If there is a Google alternative to what Bing has already done (with mapping all the trees in the world), we can also do that to avoid mapping ecosystems and instead track deforestation.
-
-### Web App ###
-Allows users to access a rudimentary 3D model that is pre-rendered each day on a cloud server.
-
-Additionally, if there are specific regions to watch out for (such as during a wildfire, the amazon, etc.), we can more frequently update those as needed. Additional processing will be needed to determine this.
-
-### Earth Visualization ####
-Given the augmented data that the Ecosystem AI will produce, we should be able to generate a rough 3D model of either the trees on Earth or a color-gradient map that shows areas of high damage vs low damage in comparison to previous years.
-
-This deliverable is the most important for broadcasting information to the public in a digestable way. Visuals must be made (and presented on the web app) in a way that is easily understood by the general public and highlights high-risk areas and low-effort governments.
-
-### Post-Generation Analytics ###
-Given the data from the Forest AI, we should be able to calculate the risk of certain areas being impacted beyond repair.
-
-+ This risk factor should be another color-gradient shown in the 3D model
-- Risk factor should take in the following features:
-    - Number of cities in the surrounding area (~50 miles from a given tree/data point)
-    - Population of cities in the surrounding area (~50 miles from a given tree/data point)
-    - Recent trends in damage (in the last ~3 years)
-    - Current deforestation percentage (can be retrieved from another dataset probably)
-
-Future iterations can add other analysis that determines insights (near a city means that city is likely causing damage, near a farm means grazin or slash/burn techiques might be the cause, etc.).
-
-## Concerns ##
-The amount of processing needed to generate a model and identify billions of trees around the Earth may force us to narrow our outlook to just a few key regions on Earth (Amazon rainforest, national parks in the US, etc.)
-
-The amount of data needed to accomplish the project will be high, we should focus on doing one step at a time instead of overloading what we can possibly do in the timeframe
+Thanks for reading!
+- The EcoSentinel Team
