@@ -21,8 +21,17 @@ To read a graphic with the pipeline, check out the `EcoSentinel_Pipeline.docx` f
 
 To read a more in-depth overview of EcoSentinel, including the problems we are targeting and how our implementation works, read the `PROJECTOVERVIEW.md` file. It contains our entire project outline that we used to construct the pipeline. Be wary of typos though, it was largely intended as documentation for developers of the project.
 
+# IMPORTANT NOTE #
+The following description will sound complicated: that's because it very much is. And our pipeline is far from over. We have designed EcoSentinel to expand from just identifying a problem to flat-out solving it in some respects (read more in our project overview).
+
+What we have laid out here is not a product, but rather a framework from which we can expand on. From targeting other types of ecological loss (e.g. aquatic ecosystems, coastal erosion, etc.) to creating new mediums in which to showcase the pipeline's results (i.e. an app that tells you how "green" a product you take a picture of is), we have big plans for the future.
+
+But to you, our user, there is no point in overcomplicating an entire process in an effort to provide transparency. So as a compromise, we provide our all-inclusive file, `ecosentinel.ipynb`: a notebook that carries you step-by-step through the whole pipeline, allowing you to analyze one country, or a set of countries, at a time. As our pipeline expands, our notebook will expand with it, allowing anyone to do what we do on a smaller scale, locally.
+
 ## Earth Engine ##
 In the `ee_scripts.js` file, we have uploaded some of the scripts we used to calculate certain metrics, and just generally get accustomed to the interface in Earth Engine. These scripts ended up not being needed, as the bulk of the data import is done in Python, but it's a nice way to understand the data repository we are working with.
+
+In our `label_data.py` file, we have started the development of ways to label our own data using basic computer vision and image manipulation techniques. This will be iterated on to provide a more robust labeling of data, but for now this serves as a last-choice backup for our model training to be conducted.
 
 ## Tensorflow Model ##
 In the `ee_model.ipynb` files, we have included our whole tensorflow model training in an easy to understand and run notebook.
@@ -38,11 +47,6 @@ In `grade_analysis.py`, we calculate grades using the risk we measure for a cert
 
 ## Web App ##
 The code for our web app is also published alongside these files. Although we fully expect users to interact with the EcoSentinel pipeline through the user interface of the website, we provide these files as a method of transparency.
-
-# Conclusion #
-If all this sounds complicated, that's because it very much is. And our pipeline is far from over. We have designed EcoSentinel to expand from just identifying a problem to flat-out solving it in some respects (read more in our project overview).
-
-But to you, our user, there is no point in overcomplicating an entire process in an effort to provide transparency. So as a compromise, we provide our final file, `ecosentinel.ipynb`: a notebook that carries you step-by-step through the whole pipeline, allowing you to analyze one country, or a set of countries, at a time.
 
 Thanks for reading!
 - The EcoSentinel Team
