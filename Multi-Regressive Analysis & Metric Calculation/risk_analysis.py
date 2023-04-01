@@ -22,7 +22,7 @@ output_dir = ""                                                         # direct
 """
     Load data, conduct analysis, and export data
 """
-def main(void):
+def risk():
     # load data #
     data = pd.read_csv(dir, ',', usecols=cols)
     countries = data[0]
@@ -36,7 +36,7 @@ def main(void):
     risk_df = np.vstack(countries, risk_analysis).T
 
     # deploy data #
-    risk_df.to_csv(dir, columns=["countries", "projected_risk"])
+    risk_df.to_csv(output_dir, columns=["countries", "projected_risk"])
 
 
 """
