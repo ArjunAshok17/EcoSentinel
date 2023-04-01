@@ -57,9 +57,8 @@ function calc_forest_metrics(country_name)
         scale: 30,
         maxPixels: 1e13
     });
-    print(
-        'Year 2000 tree cover (ha) \nmeeting minimum canopy cover and \nforest area thresholds \n ',
-        forestSize.get('treecover2000'));
+    print('Year 2000 tree cover (ha) \nmeeting minimum canopy cover and \nforest area thresholds \n ',
+          forestSize.get('treecover2000'));
         
     /* MIN FOREST AREA CHECK */
     var pixelCount = minArea.reduceRegion({
