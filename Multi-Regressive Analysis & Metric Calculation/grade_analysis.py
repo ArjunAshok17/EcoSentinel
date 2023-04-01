@@ -7,7 +7,6 @@
 """
 
 from self_ref_regressor import *        # gauge trends in risk
-import pandas as pd                     # control data import and export
 
 
 """

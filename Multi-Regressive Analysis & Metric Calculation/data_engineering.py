@@ -1,6 +1,9 @@
 """
     Data import & engineering functions.
 """
+import pandas as pd     # data reading/writing
+import numpy as np      # data manipulation
+
 # full data process #
 def data_import(dir):
     # load datasets #
@@ -47,6 +50,15 @@ def feature_import(dir, feature_name):
 
     # return datasets #
     return [ ["date", feature_name], time_data, feature_data, (cur_date, cur_val) ]
+
+
+# exports data #
+def data_export(dataset, col_labels, output_dir):
+    # dataframe creation #
+    df = pd.DataFrame(dataset)
+
+    # deploy data #
+    df.to_csv(output_dir, columns=col_labels)
 
 
 # reads dataset #

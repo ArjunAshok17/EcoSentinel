@@ -34,6 +34,7 @@ def risk():
 
     # create data frame #
     risk_df = np.vstack(countries, risk_analysis).T
+    risk_df = pd.DataFrame(risk_df)
 
     # deploy data #
     risk_df.to_csv(output_dir, columns=["countries", "projected_risk"])
