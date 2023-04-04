@@ -1,6 +1,9 @@
 """
     Visualization functions.
 """
+import matplotlib as plt        # for plotting
+import numpy as np
+
 # plots all regressive looks #
 def plot_forecasts(data, exp_out, future_data, pred_data):
     # plot data #
