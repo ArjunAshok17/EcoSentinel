@@ -22,7 +22,7 @@ The driving purpose for choosing these goals is the feeling of confusion and fru
 
 ## Implementation ##
 ### High-Level Implementation ###
-EcoSentinel is not as much a product as it is a framework and pipeline, optmized to be expanded on in the future. In this pipeline, data flows from analysis to analysis, each point connected by API for our web app to fetch and display to users.
+EcoSentinel is not as much a product as it is a framework and pipeline, optimized to be expanded on in the future. In this pipeline, data flows from analysis to analysis, each point connected by API for our web app to fetch and display to users.
 
 The process begins with data flows from Earth Engine to our TensorFlow model to analyze. The data generated is then passed onto our multi-regressive model that conducts a time series analysis, forecasting deforestation. The results of this analysis is fed into risk calculation and then grade assignment programs, feeding data once again into our databases (for now just simple csv files). All the results will then be flowed into the web APP through API.
 
@@ -30,16 +30,16 @@ As such, our technologies are constructed as follows:
 
 Backend :: Python (TensorFlow & Keras for image analysis w/ Convolutional Neural Networks, SKLearn for linear modeling, NumPy and Pandas for general data manipulation and storage, Flask for managing API requests to our model), Earth Engine [API] & JavaScript (for fetching data and experimentation w/ landsat imagery), Google Sheets (for .csv viewing and debugging while iterating the program).
 
-Frontend :: * to be completed *
+Frontend :: React.js as our main framework (JavaScript, CSS), Google Maps API to display a map on the web app (for this, we created a Cloud Console Project and obtained an API key).
 
 ### Reasoning for Technologies ###
 Earth Engine :: EE had by far the best integration with TensorFlow (and eventually the Google Cloud pipeline we will eventually leverage), enabling us to easily pipe fresh images through its API into our model for analysis in Python & Colab. Additionally, its expansive datasets meant we could find labeled data to experiment with directly in its JS "scripts" interface.
 
-TensorFlow :: as opposed to using a basic color-matching algorithm that relied on heuristics to calculate forest cover, we wanted a more robust system that could capture the nuanced colors, shapes, etc. that forests possess throughout seasons. The TF model takes EE data through an API and generates a dataset with forest cover areas. This data is later merged with other metadata (country, location, timestamp, etc.) from the EE image to conduct futher analysis. By using a CNN in TensorFlow, we were also able to directly pipe EE images as tensors to train the model. 
+TensorFlow :: as opposed to using a basic color-matching algorithm that relied on heuristics to calculate forest cover, we wanted a more robust system that could capture the nuanced colors, shapes, etc. that forests possess throughout seasons. The TF model takes EE data through an API and generates a dataset with forest cover areas. This data is later merged with other metadata (country, location, timestamp, etc.) from the EE image to conduct further analysis. By using a CNN in TensorFlow, we were also able to directly pipe EE images as tensors to train the model. 
 
 Linear Regression :: we wanted an efficient algorithm for capturing long- and short-term trends and forecasting future, and conducting a time-series analysis with our custom algorithm accomplished this best for deforestation. The libraries mentioned previously worked best with the types of data we were dealing with for efficient Python code (C runtimes w/ NumPy, passing dataframes from program to program, etc.)
 
-* frontend tech * :: 
+React.js :: we wanted React's flexibility, scalability, and ease of use. It allowed us to build a dynamic user interface with components.
 
 ## Feedback / Testing / Iteration ##
 ### Steps for Iteration ###
@@ -66,17 +66,29 @@ Additionally, we implemented custom algorithms for our time-series analysis in o
 Moreover, the specificity of our objective meant custom formulas had to be derived for risk assessment and grading. For this, we used asymptotic behavior to derive mathematical equations dependent on relevant factors. We are also consulting Environmental Science professors for input on the formulation.
 
 ## Completion ##
-To reiterate, our goal with EcoSentinel was providing the reliable, independent, and easily digestable information for people to act on ecological degradation. Through our various methods of analysis, we have done just this.
+To reiterate, our goal with EcoSentinel was providing the reliable, independent, and easily digestible information for people to act on ecological degradation. Through our various methods of analysis, we have done just this.
 
 The up-to-date, AI driven structure of the pipeline allows us to provide concurrently analyze land-sat images as they are fed in, meaning users get real-time data on ecological destruction without any bias involved in the equation.
 
 The open-source format of our pipeline means at any stage, users can pull generated data from our public repository and recreate our same analysis to verify our information and hold us accountable, OR even conduct their *own* analysis on different metrics than what we provide. We empower their own analysis as much as we power our own.
 
-The visualizations on our web app, while still a work in progress, will eventually communicate 
+The visualizations on our web app, while still a work in progress, will eventually communicate all our metrics in an easily digestible map with color-gradients for risk and grades.
+
+Overall, the project has the foundation necessary to accomplish this goal to the extent we promise, but a lack of time, resources, and last-minute team shifting has prevented us from finalizing everything we wanted to. We hope our future revisions align closer to completing this goal, and we hope people share this vision for EcoSentinel—not what it is, but what it could be.
 
 ## Scalability & Future Plans ##
 ### Expansion Plans ###
 As mentioned before, EcoSentinel is not just a single product, but an entire framework & pipeline designed to expand into new areas with the same goal: empowering people with the information they need to act on ecological degradation. Whether this means regular people, or those in positions of power (legislative officials, company executives).
 
+As such, we wish to provide not only regular people, but also those in positions of power to shift legislation and company policy to use the insights we generate in EcoSentinel. We can accomplish this by implementing our legislation & initiative analysis program, utilizing either an LLM (i.e. Google Bard) or sentiment & word analysis on text. This enables us to associate language with impact, enabling us to better predict trends, risk, and grades for both countries AND companies.
+
+This could materialize as an app that takes a photo of a product and provides users with information on the sustainability of a company's/product's practices (using where they source from, etc.)
+
+These would help broaden our impact to people who can influence more in the fight against ecological destruction, as well as individuals who want an easier time picking eco-friendly products.
+
+More than anything, we want to finalize EcoSentinel's framework, optimizing it for growth before we push it to the larger market and allow others to use the data we collect.
+
 ### Expansion Adjustments ###
-In order to accomplish this larger scale, we would 
+As mentioned before, we've been dealing with scale as an issue from the very start, forcing us to design the pipeline with this scale in mind.
+
+As such, accomplish this larger scale wouldn't change the EcoSentinel architecture by much. A simple integration fully into the Google Cloud [pipeline] and a switch to a different database system would allow us to completely offload EcoSentinel to server based processing, allowing us to scale as much as is demanded.
