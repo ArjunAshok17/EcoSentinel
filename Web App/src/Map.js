@@ -93,8 +93,10 @@ class Map extends Component {
   render() {
     return (
       <div>
-        <div id="map" style={{ width: "100%", height: "500px" }}></div>
-        <button onClick={this.clearDrawing}>Clear</button>
+        <div id="map" style={{ width: "100%", height: "800px" }}></div>
+        <button onClick={this.clearDrawing} style={{ backgroundColor: 'transparent', border: 'none', fontSize: '16px', fontWeight: '500', marginLeft: '20px', color: '#6b6b6b' }}>
+Clear Selections
+</button>
       </div>
     );
   }  

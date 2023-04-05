@@ -1,0 +1,52 @@
+.about-page {
+    color: #fff;
+    background-color: #000;
+    padding: 50px;
+  }
+
+  ul {
+    list-style: none;
+  }
+  
+  
+  .head{
+    color: #67B03A;
+    font-size: 50px;
+  }
+  .small-image {
+    width: 250px;
+    height: auto;
+  }
+  
+  .about-heading {
+    font-size: 3.5rem;
+    margin-bottom: 50px;
+  }
+  
+  .about-content {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  .about-quote {
+    font-size: 1.5rem;
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+  
+  .about-author {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 50px;
+  }
+  
+  .about-image {
+    max-width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .about-source {
+    font-size: 1rem;
+  }
+  
