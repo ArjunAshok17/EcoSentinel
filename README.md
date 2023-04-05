@@ -1,5 +1,5 @@
 # EcoSentinel #
-In this document is the operating instructions for running the EcoSentinel pipeline on your own hardware, unlocking the same insights we have worked hard to develop. We are making this project completely open-source in an effort to stay transparent about our methods of analysis, earning some trust from the public, legislative officials, and company executives around the world about the information we are providing.
+In this document is the operating instructions for running the EcoSentinel pipeline on your own hardware, unlocking the same insights we have worked hard to develop. We are making this project completely open-source in an effort to stay transparent about our methods of analysis, earning some trust from the public, legislative officials, and company executives around the world about the information we are providing. It is however **important to note** that EcoSentinel is meant to be purely used through its web app. Though its functionality has not yet been achieved, you can experiment with the algorithms included throughout.
 
 Below, we provide a high-level overview of the custom-built pipeline we have constructed, and then dive into the details of each step.
 
@@ -26,7 +26,7 @@ The following description will sound complicated: that's because it very much is
 
 What we have laid out here is not a product, but rather a framework from which we can expand on. From targeting other types of ecological loss (e.g. aquatic ecosystems, coastal erosion, etc.) to creating new mediums in which to showcase the pipeline's results (i.e. an app that tells you how "green" a product you take a picture of is), we have big plans for the future.
 
-But to you, our user, there is no point in overcomplicating an entire process in an effort to provide transparency. So as a compromise, we provide our all-inclusive file, `ecosentinel.ipynb`: a notebook that carries you step-by-step through the whole pipeline, allowing you to analyze one country, or a set of countries, at a time. As our pipeline expands, our notebook will expand with it, allowing anyone to do what we do on a smaller scale, locally.
+But to you, our user, there is no point in overcomplicating an entire process in an effort to provide transparency. So as a compromise, we provide our all-inclusive file, `ecosentinel.ipynb`: a notebook that carries you step-by-step through the whole pipeline, allowing you to analyze one country, or a set of countries, at a time. As our pipeline expands, our notebook will expand with it, allowing anyone to do what we do on a smaller scale, locally. **NOTE: this document is not fully finished yet as our pipeline is getting finalized still, take care to experiment with your own data using our algorithms**
 
 ## Earth Engine ##
 In the `ee_scripts.js` file, we have uploaded some of the scripts we used to calculate certain metrics, and just generally get accustomed to the interface in Earth Engine. These scripts ended up not being needed, as the bulk of the data import is done in Python, but it's a nice way to understand the data repository we are working with.
